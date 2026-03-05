@@ -1,40 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+<div align="center">
 
-## Getting Started
+<img src="https://em-content.zobj.net/source/apple/391/foot_1f9b6.png" width="80" alt="foot emoji" />
 
-First, run the development server:
+# Toe Be Sure (TBS)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### AI-Powered Diabetic Foot Ulcer Detection
+
+[![Live App](https://img.shields.io/badge/Live%20App-toe--be--sure.vercel.app-0E7490?style=for-the-badge&logo=vercel)](https://toe-be-sure.vercel.app)
+[![Framework](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js)](https://nextjs.org)
+[![AI Model](https://img.shields.io/badge/Model-ResNet18-EF4444?style=for-the-badge&logo=pytorch)](https://pytorch.org)
+
+</div>
+
+---
+
+## 🔗 Links
+
+| | |
+|---|---|
+| 🌐 **Live App** | https://toe-be-sure.vercel.app |
+| 📖 **User Manual** | https://toe-be-sure.vercel.app/TBS_User_Manual.html |
+| 🤖 **AI Backend** | https://github.com/kharsha006/hackathon_dfu |
+
+---
+
+## 🦶 What is Toe Be Sure?
+
+**Toe Be Sure (TBS)** is a clinical decision support web app that uses deep learning to detect **Diabetic Foot Ulcers (DFUs)** from foot photographs. Upload an image, get an instant AI-powered risk assessment — complete with visual heatmaps and plain-English explanations.
+
+> ⚠️ TBS is a research/hackathon prototype. It is **not** a certified medical device and must not replace professional clinical diagnosis.
+
+---
+
+## ✨ Features
+
+- 🔴🟡🟢 **Risk classification** — High / Medium / Low DFU risk score
+- 🌡️ **Grad-CAM heatmaps** — highlights exactly where the AI detected concern
+- 📊 **SHAP feature importance** — shows which clinical factors drove the result
+- 💬 **Textual justification** — plain-English summary of the AI's reasoning
+- 🔒 **Google Sign-In** — secure authentication via NextAuth.js
+- 🌙 **Dark / Light mode** toggle
+- 📱 **Fully responsive** — works on mobile, tablet, and desktop
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Frontend | Next.js 16, React 19, Tailwind CSS v4 |
+| Auth | NextAuth.js + Google OAuth 2.0 |
+| AI Model | ResNet18 (PyTorch), fine-tuned on DFU dataset |
+| Visual XAI | Grad-CAM (pytorch-grad-cam) |
+| AI Serving | Flask + ngrok on Google Colab |
+| Deployment | Vercel |
+
+---
+
+## 🧠 How It Works
+
+```
+📷 Foot Photo  →  Browser  →  Vercel API  →  Colab (ResNet18 + Grad-CAM)  →  📊 Results
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. User uploads a foot image and optional clinical data (age, BMI, blood sugar, etc.)
+2. Image is forwarded from the Vercel API route to a Flask server running on Google Colab
+3. ResNet18 classifies the image and Grad-CAM generates the heatmap
+4. Risk level, confidence score, heatmap, and explanation are returned instantly
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+---
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## 🤖 AI Backend (Google Colab)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+The AI model runs in `tbs_api_server.ipynb`. Open it in Colab and run all 4 cells:
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Install dependencies
+2. Download `best_dfu.pt` model from GitHub
+3. Load ResNet18 + transforms
+4. Start Flask + ngrok — the live URL is printed in the output
 
-## Learn More
+Set `COLAB_URL` in Vercel environment variables to that URL and redeploy.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+## 👥 Team — Kodrxy Hackathon 2025–2026
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+| Role | |
+|---|---|
+| Frontend + Integration | [Vishnu-1526](https://github.com/Vishnu-1526) |
+| AI Model + Backend | [kharsha006](https://github.com/kharsha006) |
