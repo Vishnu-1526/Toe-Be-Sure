@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Toe Be Sure — User Manual</title>
+  <style>
+    /* ── Reset & base ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal:   #0E7490;
+      --teal2:  #0891B2;
+      --teal-l: #CCFBF1;
+      --navy:   #0F172A;
+      --slate1: #1E293B;
+      --slate2: #334155;
+      --slate3: #475569;
+      --slate4: #94A3B8;
+      --white:  #F8FAFC;
+      --red:    #DC2626;
+      --amber:  #D97706;
+      --green:  #16A34A;
+    }
+
+    html { font-size: 16px; }
+    body {
+      font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      background: #fff;
+      color: #1E293B;
+      line-height: 1.65;
+    }
+
+    /* ── Print rules ──────────────────────────────────────────── */
+    @media print {
+      .page-break { page-break-before: always; }
+      .no-print   { display: none !important; }
+      body        { font-size: 13px; }
+    }
+
+    /* ── Page shell ───────────────────────────────────────────── */
+    .page {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       COVER PAGE
+    ═══════════════════════════════════════════════════════════ */
+    .cover {
+      background: linear-gradient(150deg, #0F172A 0%, #0C3B52 55%, #0E7490 100%);
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 40px;
+      page-break-after: always;
+    }
+
+    .cover-logo {
+      width: 90px; height: 90px;
+      background: rgba(14,116,144,0.35);
+      border: 2px solid rgba(20,184,166,0.5);
+      border-radius: 22px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 44px;
+      margin: 0 auto 28px;
+      box-shadow: 0 0 60px rgba(6,182,212,0.35);
+    }
+
+    .cover-badge {
+      display: inline-block;
+      background: rgba(6,182,212,0.18);
+      border: 1px solid rgba(6,182,212,0.4);
+      color: #67E8F9;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      border-radius: 99px;
+      margin-bottom: 18px;
+    }
+
+    .cover h1 {
+      font-size: 48px;
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 6px;
+    }
+
+    .cover h1 span { color: #2DD4BF; }
+
+    .cover-sub {
+      font-size: 18px;
+      color: #94A3B8;
+      margin-bottom: 40px;
+    }
+
+    .cover-divider {
+      width: 80px; height: 3px;
+      background: linear-gradient(90deg, #0E7490, #2DD4BF);
+      border-radius: 99px;
+      margin: 0 auto 36px;
+    }
+
+    .cover-desc {
+      font-size: 15px;
+      color: #CBD5E1;
+      max-width: 520px;
+      line-height: 1.75;
+      margin: 0 auto 48px;
+    }
+
+    .cover-meta {
+      display: flex; gap: 48px; justify-content: center;
+      margin-top: 0;
+    }
+
+    .cover-meta-item { text-align: center; }
+    .cover-meta-item .val {
+      font-size: 26px; font-weight: 800; color: #2DD4BF;
+    }
+    .cover-meta-item .lbl {
+      font-size: 11px; color: #64748B; text-transform: uppercase; letter-spacing: 1px;
+    }
+
+    .cover-footer {
+      position: absolute;
+      bottom: 30px;
+      font-size: 11px;
+      color: #334155;
+      letter-spacing: 1px;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       BODY STYLES
+    ═══════════════════════════════════════════════════════════ */
+
+    /* section header */
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--teal2);
+      margin-bottom: 6px;
+    }
+
+    h2.section-title {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .section-intro {
+      color: var(--slate3);
+      font-size: 15px;
+      margin-bottom: 28px;
+      max-width: 620px;
+    }
+
+    /* ── Section wrapper ──────────────────────────────────────── */
+    .section-wrap {
+      padding: 56px 0 16px;
+    }
+
+    /* ── Thin horizontal rule ─────────────────────────────────── */
+    hr.divider {
+      border: none;
+      border-top: 1px solid #E2E8F0;
+      margin: 48px 0;
+    }
+
+    /* ── Cards / boxes ────────────────────────────────────────── */
+    .card {
+      background: #F8FAFC;
+      border: 1.5px solid #E2E8F0;
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin-bottom: 20px;
+    }
+
+    .card-teal {
+      background: #ECFEFF;
+      border-color: #A5F3FC;
+    }
+
+    .card-red    { background: #FEF2F2; border-color: #FECACA; }
+    .card-amber  { background: #FFFBEB; border-color: #FDE68A; }
+    .card-green  { background: #F0FDF4; border-color: #BBF7D0; }
+
+    .card h3 {
+      font-size: 16px; font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .card p, .card li { font-size: 14.5px; color: var(--slate2); }
+    .card ul, .card ol { padding-left: 22px; }
+    .card li { margin-bottom: 5px; }
+
+    /* ── Step rows (numbered) ─────────────────────────────────── */
+    .steps { counter-reset: steps; }
+    .step {
+      display: flex; gap: 20px;
+      margin-bottom: 28px;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      flex-shrink: 0;
+      width: 38px; height: 38px;
+      background: var(--teal);
+      color: white;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; font-weight: 800;
+    }
+
+    .step-body h4 {
+      font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 6px;
+    }
+
+    .step-body p { font-size: 14.5px; color: var(--slate2); }
+
+    /* ── Two-col feature grid ─────────────────────────────────── */
+    .feat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 8px;
+    }
+
+    .feat-item {
+      background: #F8FAFC;
+      border: 1.5px solid #E2E8F0;
+      border-radius: 14px;
+      padding: 18px 20px;
+    }
+
+    .feat-icon { font-size: 26px; margin-bottom: 8px; }
+    .feat-item h4 { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .feat-item p  { font-size: 13px; color: var(--slate3); }
+
+    /* ── Risk badges ──────────────────────────────────────────── */
+    .risk-row {
+      display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 16px;
+    }
+
+    .risk-badge {
+      border-radius: 99px;
+      padding: 8px 20px;
+      font-size: 13px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .risk-high   { background: #FEE2E2; color: #B91C1C; border: 1.5px solid #FCA5A5; }
+    .risk-medium { background: #FEF3C7; color: #92400E; border: 1.5px solid #FCD34D; }
+    .risk-low    { background: #DCFCE7; color: #15803D; border: 1.5px solid #86EFAC; }
+
+    /* ── Table ────────────────────────────────────────────────── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    th {
+      background: var(--navy);
+      color: white;
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+    }
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #E2E8F0;
+      color: var(--slate2);
+      vertical-align: top;
+    }
+    tr:nth-child(even) td { background: #F8FAFC; }
+
+    /* ── Callout / info box ──────────────────────────────────── */
+    .callout {
+      border-left: 4px solid var(--teal);
+      background: #ECFEFF;
+      border-radius: 0 10px 10px 0;
+      padding: 14px 20px;
+      margin: 20px 0;
+      font-size: 14px;
+      color: #164E63;
+    }
+
+    .callout-warn {
+      border-color: #D97706;
+      background: #FFFBEB;
+      color: #78350F;
+    }
+
+    .callout-danger {
+      border-color: var(--red);
+      background: #FEF2F2;
+      color: #7F1D1D;
+    }
+
+    .callout strong { font-weight: 700; }
+
+    /* ── Flow diagram ─────────────────────────────────────────── */
+    .flow {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0;
+      margin: 24px 0;
+    }
+
+    .flow-box {
+      background: var(--navy);
+      color: white;
+      border-radius: 10px;
+      padding: 10px 16px;
+      font-size: 12.5px;
+      font-weight: 600;
+      text-align: center;
+      min-width: 90px;
+    }
+
+    .flow-arrow {
+      font-size: 18px;
+      color: var(--teal);
+      padding: 0 6px;
+      font-weight: 900;
+    }
+
+    /* ── TOC ──────────────────────────────────────────────────── */
+    .toc {
+      background: #F8FAFC;
+      border: 1.5px solid #E2E8F0;
+      border-radius: 16px;
+      padding: 30px 36px;
+      margin: 40px 0;
+    }
+
+    .toc h2 {
+      font-size: 18px; font-weight: 800; color: var(--navy);
+      margin-bottom: 20px;
+    }
+
+    .toc ol { padding-left: 20px; }
+
+    .toc li {
+      font-size: 15px;
+      color: var(--slate2);
+      margin-bottom: 10px;
+      padding-left: 4px;
+    }
+
+    .toc li a {
+      text-decoration: none;
+      color: var(--teal2);
+      font-weight: 600;
+    }
+
+    .toc li a:hover { text-decoration: underline; }
+
+    .toc .sublabel {
+      font-size: 12px;
+      color: var(--slate4);
+      margin-left: 8px;
+      font-weight: 400;
+    }
+
+    /* ── FAQ ──────────────────────────────────────────────────── */
+    .faq-item {
+      border-bottom: 1px solid #E2E8F0;
+      padding: 18px 0;
+    }
+
+    .faq-item:last-child { border-bottom: none; }
+
+    .faq-q {
+      font-size: 15px; font-weight: 700; color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .faq-a {
+      font-size: 14.5px; color: var(--slate2);
+    }
+
+    /* ── Tech architecture ────────────────────────────────────── */
+    .arch-layer {
+      background: linear-gradient(135deg, #0F172A, #1E293B);
+      color: white;
+      border-radius: 14px;
+      padding: 18px 24px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .arch-icon { font-size: 28px; flex-shrink: 0; }
+
+    .arch-title {
+      font-size: 14px; font-weight: 700; margin-bottom: 2px;
+    }
+
+    .arch-desc {
+      font-size: 12.5px; color: #94A3B8;
+    }
+
+    /* ── Open-in-browser button ───────────────────────────────── */
+    .print-btn {
+      position: fixed;
+      bottom: 28px; right: 28px;
+      background: var(--teal);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 99px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      z-index: 999;
+    }
+
+    .print-btn:hover { background: var(--teal2); }
+
+    /* ── Footer ───────────────────────────────────────────────── */
+    .footer {
+      background: var(--navy);
+      color: #475569;
+      text-align: center;
+      padding: 40px;
+      font-size: 13px;
+      margin-top: 60px;
+      border-radius: 16px 16px 0 0;
+    }
+
+    .footer strong { color: #CBD5E1; }
+
+    /* ── Utility ──────────────────────────────────────────────── */
+    .mt-4 { margin-top: 16px; }
+    .mt-8 { margin-top: 32px; }
+    .mb-2 { margin-bottom: 8px; }
+    .mb-4 { margin-bottom: 16px; }
+    .text-sm { font-size: 13px; color: var(--slate3); }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════ PRINT BUTTON ══════════════════ -->
+<button class="print-btn no-print" onclick="window.print()">🖨️ Save as PDF</button>
+
+<!-- ══════════════════════════════════════════════════
+     COVER PAGE
+══════════════════════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-logo">🦶</div>
+  <div class="cover-badge">Official User Manual</div>
+  <h1>Toe Be <span>Sure</span></h1>
+  <p class="cover-sub">AI-Powered Diabetic Foot Ulcer Detection</p>
+  <div class="cover-divider"></div>
+  <p class="cover-desc">
+    A complete, plain-English guide to understanding and using
+    the Toe Be Sure (TBS) web application — from logging in to
+    reading your AI results with confidence.
+  </p>
+  <div class="cover-meta">
+    <div class="cover-meta-item">
+      <div class="val">🧠</div>
+      <div class="lbl">Deep Learning AI</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="val">🌡️</div>
+      <div class="lbl">Visual Heatmaps</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="val">📊</div>
+      <div class="lbl">Risk Analysis</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="val">🔒</div>
+      <div class="lbl">Secure Login</div>
+    </div>
+  </div>
+
+  <div class="cover-footer">Toe Be Sure · Version 1.0 · 2025–2026</div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════
+     TABLE OF CONTENTS
+══════════════════════════════════════════════════ -->
+<div class="page">
+
+  <div class="toc">
+    <h2>📋 Table of Contents</h2>
+    <ol>
+      <li><a href="#what-is-tbs">What is Toe Be Sure?</a> <span class="sublabel">— Purpose & who it's for</span></li>
+      <li><a href="#before-you-start">Before You Start</a> <span class="sublabel">— What you need</span></li>
+      <li><a href="#login">Logging In</a> <span class="sublabel">— Google Sign-In, step by step</span></li>
+      <li><a href="#walkthrough">Website Walkthrough</a> <span class="sublabel">— Every section explained</span></li>
+      <li><a href="#run-analysis">Running Your First Analysis</a> <span class="sublabel">— Upload → Analyze → Results</span></li>
+      <li><a href="#reading-results">Reading Your Results</a> <span class="sublabel">— What each result means</span></li>
+      <li><a href="#clinical-fields">The Clinical Parameters</a> <span class="sublabel">— Why they matter</span></li>
+      <li><a href="#how-ai-works">How the AI Works</a> <span class="sublabel">— Plain-English technology explainer</span></li>
+      <li><a href="#faq">Frequently Asked Questions</a></li>
+      <li><a href="#important-notes">Important Medical Disclaimer</a></li>
+      <li><a href="#contact">Contact & Support</a></li>
+    </ol>
+  </div>
+
+  <hr class="divider">
+
+
+  <!-- ══════════════════════════════════════════════════
+       1. WHAT IS TBS
+  ══════════════════════════════════════════════════ -->
+  <div id="what-is-tbs" class="section-wrap">
+    <p class="section-label">Section 1</p>
+    <h2 class="section-title">What is Toe Be Sure?</h2>
+    <p class="section-intro">A quick introduction to the platform and the problem it solves.</p>
+
+    <div class="card card-teal">
+      <h3>🦶 The Problem</h3>
+      <p>
+        Diabetic Foot Ulcers (DFUs) are open sores or wounds that appear on the feet of people with
+        diabetes. They affect roughly <strong>15% of all diabetic patients</strong> and, if left
+        undetected, can lead to serious infections, hospitalisations, and even amputations.
+        Early detection is critical — but many patients don't have immediate access to specialist
+        doctors.
+      </p>
+    </div>
+
+    <div class="card card-teal mt-4">
+      <h3>✅ The Solution — Toe Be Sure</h3>
+      <p>
+        <strong>Toe Be Sure (TBS)</strong> is a free web application that uses
+        <strong>Artificial Intelligence (AI)</strong> to analyse a photograph of a foot
+        and give an instant, explainable risk assessment for diabetic foot ulcers.
+        Think of it as a "second opinion" tool that can be accessed from any device with a browser.
+      </p>
+    </div>
+
+    <div class="feat-grid mt-4">
+      <div class="feat-item">
+        <div class="feat-icon">🏥</div>
+        <h4>Who is it for?</h4>
+        <p>Doctors, nurses, caregivers, and diabetic patients who want a fast initial screening tool.</p>
+      </div>
+      <div class="feat-item">
+        <div class="feat-icon">🌍</div>
+        <h4>Where does it run?</h4>
+        <p>Entirely in your web browser at <strong>toe-be-sure.vercel.app</strong>. No app to install.</p>
+      </div>
+      <div class="feat-item">
+        <div class="feat-icon">🔒</div>
+        <h4>Is it private?</h4>
+        <p>Images are sent only for analysis and not stored permanently. Login is secured via Google.</p>
+      </div>
+      <div class="feat-item">
+        <div class="feat-icon">⚡</div>
+        <h4>How fast is it?</h4>
+        <p>Results appear within a few seconds of clicking "Analyze Image".</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+
+  <!-- ══════════════════════════════════════════════════
+       2. BEFORE YOU START
+  ══════════════════════════════════════════════════ -->
+  <div id="before-you-start" class="section-wrap">
+    <p class="section-label">Section 2</p>
+    <h2 class="section-title">Before You Start</h2>
+    <p class="section-intro">Everything you need before opening the website.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Requirement</th>
+          <th>Details</th>
+          <th>Why it's needed</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>A web browser</strong></td>
+          <td>Google Chrome, Safari, Firefox, Edge (any modern browser)</td>
+          <td>The website runs inside your browser</td>
+        </tr>
+        <tr>
+          <td><strong>Internet connection</strong></td>
+          <td>Any speed; mobile data works too</td>
+          <td>The AI model runs on a remote server</td>
+        </tr>
+        <tr>
+          <td><strong>A Google account</strong></td>
+          <td>Gmail or any Google Workspace account</td>
+          <td>Login is done through Google Sign-In</td>
+        </tr>
+        <tr>
+          <td><strong>A foot photograph</strong></td>
+          <td>JPG, PNG, or WEBP — clear, well-lit image of the foot</td>
+          <td>The AI analyses the image for ulcer signs</td>
+        </tr>
+        <tr>
+          <td><strong>Optional: clinical data</strong></td>
+          <td>Patient's age, BMI, diabetes duration, blood sugar, wound history</td>
+          <td>Enhances the SHAP feature importance chart</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout mt-4">
+      <strong>📸 Image tip:</strong> Take the photo in good lighting, flat and close-up,
+      showing the sole or area of concern. Blurry or dark photos may reduce accuracy.
+    </div>
+  </div>
+
+  <hr class="divider">
+
+
+  <!-- ══════════════════════════════════════════════════
+       3. LOGGING IN
+  ══════════════════════════════════════════════════ -->
+  <div id="login" class="section-wrap">
+    <p class="section-label">Section 3</p>
+    <h2 class="section-title">Logging In</h2>
+    <p class="section-intro">TBS requires a Google Sign-In to protect user privacy. Here's how to do it.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h4>Open the website</h4>
+          <p>In your browser, go to <strong>https://toe-be-sure.vercel.app</strong>. You will see a loading spinner for a moment while the session is checked.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h4>You're redirected to the Sign-In page</h4>
+          <p>If you are not logged in, the site automatically takes you to a login screen. You will see a "Sign in with Google" button.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h4>Click "Sign in with Google"</h4>
+          <p>A Google pop-up will appear. Choose the Google account you want to use, or enter your Gmail address and password.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h4>You're in!</h4>
+          <p>After Google confirms your identity, you are returned to the main TBS dashboard. Your name and profile picture from Google will appear in the top-right corner of the navigation bar.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>🔑 First-time users:</strong> The website may ask for your permission to access
+      basic Google profile information (name, email, and photo). This is safe and is only used to
+      personalise your session — TBS does not share your data with anyone.
+    </div>
+
+    <div class="card mt-4">
+      <h3>Signing Out</h3>
+      <p>Click your profile picture or name in the top-right corner of the navigation bar, then click
+        <strong>"Sign out"</strong>. On mobile, open the hamburger menu (☰) to find the Sign out button.</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+
+  <!-- ══════════════════════════════════════════════════
+       4. WEBSITE WALKTHROUGH
+  ══════════════════════════════════════════════════ -->
+  <div id="walkthrough" class="section-wrap">
+    <p class="section-label">Section 4</p>
+    <h2 class="section-title">Website Walkthrough</h2>
+    <p class="section-intro">A guided tour of every part of the website, top to bottom.</p>
+
+    <!-- 4.1 Navbar -->
+    <div class="card mb-4">
+      <h3>🔝 Navigation Bar (top of every page)</h3>
+      <p>The dark bar at the top stays visible at all times. It contains:</p>
+      <ul class="mt-4">
+        <li><strong>🦶 Toe Be Sure logo</strong> — clicking it does nothing (you're already on the main page)</li>
+        <li><strong>Home</strong> — scrolls back to the very top</li>
+        <li><strong>About</strong> — scrolls to the "What We Provide" section</li>
+        <li><strong>How It Works</strong> — scrolls to the analysis tool</li>
+        <li><strong>Contact</strong> — scrolls to the contact section at the bottom</li>
+        <li><strong>🌙 / ☀️ toggle</strong> — switches between dark mode and light mode</li>
+        <li><strong>Your profile picture &amp; name</strong> — confirms you're logged in</li>
+        <li><strong>Sign out button</strong> — logs you out of the session</li>
+        <li><strong>☰ hamburger</strong> (mobile only) — opens the mobile menu</li>
+      </ul>
+    </div>
+
+    <!-- 4.2 Hero -->
+    <div class="card mb-4">
+      <h3>🌟 Hero Section (the big welcome area)</h3>
+      <p>
+        The first thing you see after logging in. It contains a headline, a brief description of
+        what TBS does, and two buttons:
+      </p>
+      <ul class="mt-4">
+        <li><strong>"Start Analysis"</strong> — jumps straight to the upload tool</li>
+        <li><strong>"What We Provide"</strong> — jumps to the feature cards below</li>
+      </ul>
+      <p class="mt-4">
+        On the right side is a decorative AI scanner animation — purely visual, it's not an
+        interactive element.
+      </p>
+    </div>
+
+    <!-- 4.3 What We Provide -->
+    <div class="card mb-4">
+      <h3>📦 "What We Provide" (Key Deliverables section)</h3>
+      <p>Four feature cards that summarise what TBS delivers:</p>
+      <ul class="mt-4">
+        <li><strong>🧠 Multi-Modal Classifier</strong> — combines image + clinical data into a risk score</li>
+        <li><strong>🌡️ Visual Explanations</strong> — colour heatmap overlaid on the photo</li>
+        <li><strong>💬 Textual Justifications</strong> — plain-English explanation of the AI's decision</li>
+        <li><strong>📊 Interactive Dashboard</strong> — risk gauge + SHAP chart for full transparency</li>
+      </ul>
+    </div>
+
+    <!-- 4.4 Analysis Tool -->
+    <div class="card mb-4">
+      <h3>🔬 "How It Works" / Analysis Tool (the main feature)</h3>
+      <p>
+        This is the heart of the application. See <strong>Section 5</strong> for a detailed
+        step-by-step guide on using it.
+      </p>
+    </div>
+
+    <!-- 4.5 Contact -->
+    <div class="card">
+      <h3>📞 Contact Section (bottom of the page)</h3>
+      <p>Two contact buttons:</p>
+      <ul class="mt-4">
+        <li><strong>Email</strong> — <a href="mailto:hakdiyal@gitam.in" style="color: var(--teal2);">hakdiyal@gitam.in</a> — clicking opens your email client</li>
+        <li><strong>Phone</strong> — +91 81253 59415 — clicking on mobile will dial the number</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+</div><!-- end .page -->
+
+
+<!-- ══════════════════════════════════════════════════
+     PAGE BREAK
+══════════════════════════════════════════════════ -->
+<div class="page-break"></div>
+
+<div class="page">
+
+  <!-- ══════════════════════════════════════════════════
+       5. RUNNING YOUR FIRST ANALYSIS
+  ══════════════════════════════════════════════════ -->
+  <div id="run-analysis" class="section-wrap">
+    <p class="section-label">Section 5</p>
+    <h2 class="section-title">Running Your First Analysis</h2>
+    <p class="section-intro">A complete step-by-step guide from uploading a photo to getting your result.</p>
+
+    <div class="steps">
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h4>Go to the Analysis Tool</h4>
+          <p>Click <strong>"Start Analysis"</strong> on the hero section, or click <strong>"How It Works"</strong>
+          in the navigation bar. The page will smoothly scroll to the two-column analysis area.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h4>Upload a Foot Image</h4>
+          <p>
+            You will see a dashed upload box labelled <strong>"📷 Foot Image"</strong> on the left.
+            You can either:
+          </p>
+          <ul>
+            <li><strong>Drag and drop</strong> a photo from your computer directly into the box, OR</li>
+            <li><strong>Click the box</strong> to open your file browser and select an image</li>
+          </ul>
+          <p>Accepted formats: <strong>JPG, PNG, WEBP</strong>. The image preview will appear in the box immediately after selection.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h4>Remove the image (if needed)</h4>
+          <p>If you uploaded the wrong photo, click the red <strong>"✕ Remove image"</strong> button
+          that appears below the preview to clear it and start again.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h4>Fill in Clinical Parameters (optional, but recommended)</h4>
+          <p>
+            Below the upload box is a second card labelled <strong>"🩺 Clinical Parameters"</strong>.
+            These fields are <em>optional</em> — the AI can run on the image alone — but filling them
+            in makes the SHAP chart (see Section 6) more personalised and informative.
+          </p>
+          <ul>
+            <li><strong>Age</strong> — patient's age in years (e.g. 62)</li>
+            <li><strong>BMI</strong> — Body Mass Index in kg/m² (e.g. 31.2)</li>
+            <li><strong>Diabetes Duration</strong> — how many years the patient has had diabetes</li>
+            <li><strong>Fasting Blood Sugar</strong> — blood glucose in mg/dL (e.g. 180)</li>
+            <li><strong>Previous Ulcers / Wounds</strong> — dropdown: No / Yes – healed / Yes – active</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <h4>Click "🔍 Analyze Image"</h4>
+          <p>
+            The large teal button at the bottom of the left column. It will be <em>greyed out</em>
+            until you upload an image. Once clicked:
+          </p>
+          <ul>
+            <li>The button label changes to <strong>"Running AI inference…"</strong> with a spinning icon</li>
+            <li>On the right side, a loading animation appears</li>
+            <li>The analysis usually takes <strong>2–8 seconds</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-body">
+          <h4>View your results on the right panel</h4>
+          <p>
+            Four result cards will appear on the right side of the screen.
+            See <strong>Section 6</strong> for a detailed breakdown of what each card means.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="callout-warn callout">
+      <strong>⚠️ If the "Analyze Image" button stays greyed out:</strong> Make sure you have
+      successfully uploaded an image. The button only activates when an image is present in the upload box.
+    </div>
+
+    <div class="callout">
+      <strong>💡 No AI backend connected?</strong> If the live AI server (Colab backend) is not running,
+      TBS automatically uses a <strong>simulation mode</strong> to generate a plausible sample result.
+      Simulated results are labelled with "⚡ Simulated" at the bottom of the Risk card. They are
+      for demonstration only and should not be used for medical decisions.
+    </div>
+  </div>
+
+  <hr class="divider">
+
+
+  <!-- ══════════════════════════════════════════════════
+       6. READING YOUR RESULTS
+  ══════════════════════════════════════════════════ -->
+  <div id="reading-results" class="section-wrap">
+    <p class="section-label">Section 6</p>
+    <h2 class="section-title">Reading Your Results</h2>
+    <p class="section-intro">After the analysis runs, four result cards appear on the right. Here is exactly what each one means.</p>
+
+    <!-- Risk card -->
+    <div class="card mb-4">
+      <h3>Card 1: AI Prediction &amp; Risk Level</h3>
+      <p>This is the primary result — a clear verdict with a colour-coded risk badge.</p>
+
+      <div class="risk-row mt-4">
+        <div class="risk-badge risk-high">🔴 High Risk</div>
+        <div class="risk-badge risk-medium">🟡 Medium Risk</div>
+        <div class="risk-badge risk-low">🟢 Low Risk</div>
+      </div>
+
+      <table class="mt-4">
+        <thead>
+          <tr>
+            <th>Risk Level</th>
+            <th>AI Label</th>
+            <th>What it means</th>
+            <th>Recommended action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong style="color:#B91C1C;">🔴 High</strong></td>
+            <td>DFU Detected</td>
+            <td>The AI detected patterns strongly consistent with an active diabetic foot ulcer. Ulcer probability ≥ 65%.</td>
+            <td><strong>Seek medical attention immediately.</strong> Visit a doctor or wound care specialist as soon as possible.</td>
+          </tr>
+          <tr>
+            <td><strong style="color:#92400E;">🟡 Medium</strong></td>
+            <td>DFU Risk Detected</td>
+            <td>Early-stage or pre-ulcerative changes were identified. Ulcer probability is between 35%–65%.</td>
+            <td><strong>See a healthcare professional soon.</strong> Preventive care and regular monitoring are strongly advised.</td>
+          </tr>
+          <tr>
+            <td><strong style="color:#15803D;">🟢 Low</strong></td>
+            <td>No DFU Detected</td>
+            <td>No significant ulcer patterns found. Tissue appears within normal clinical range. Ulcer probability &lt; 35%.</td>
+            <td><strong>Continue routine monitoring.</strong> Maintain foot hygiene and schedule regular check-ups.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="mt-4"><strong>Model Confidence</strong> — the horizontal bar below the badge shows how "sure" the AI is about its prediction, expressed as a percentage (e.g. 87.3%). A higher percentage means the model found clearer evidence for its decision.</p>
+    </div>
+
+    <!-- Grad-CAM -->
+    <div class="card mb-4">
+      <h3>Card 2: 🌡️ Grad-CAM Visual Explanation</h3>
+      <p>
+        This card displays your uploaded foot photo with a <strong>colour overlay (heatmap)</strong>
+        showing exactly which parts of the image the AI focused on to make its decision.
+      </p>
+      <ul class="mt-4">
+        <li><strong>Bright red / orange patches</strong> — areas of highest concern; the AI sees potential ulcer-related patterns here</li>
+        <li><strong>Yellow / light patches</strong> — moderate activation areas</li>
+        <li><strong>Dark / no overlay</strong> — areas the AI considered low-risk or ignored</li>
+        <li><strong>Green patches</strong> (Low risk result) — minimal activation, looks healthy</li>
+      </ul>
+      <div class="callout mt-4">
+        <strong>Think of it like:</strong> a doctor circling the problem areas on an X-ray.
+        The heatmap shows you <em>where</em> the AI looked, not just <em>what</em> it decided.
+        This is called <strong>Explainable AI (XAI)</strong>.
+      </div>
+      <p class="mt-4 text-sm">Technical note: When the live AI backend is connected, these heatmaps are generated by the real ResNet18 model using Grad-CAM. When in simulation mode, they are drawn as approximations.</p>
+    </div>
+
+    <!-- SHAP -->
+    <div class="card mb-4">
+      <h3>Card 3: 📊 SHAP Feature Importance</h3>
+      <p>
+        This chart answers: <em>"Which patient factors most influenced this risk result?"</em>
+        It uses a technique called <strong>SHAP (SHapley Additive exPlanations)</strong> —
+        a standard method from data science for explaining AI decisions.
+      </p>
+      <ul class="mt-4">
+        <li>Each bar represents a clinical factor (Age, BMI, Diabetes Duration, Blood Sugar, Previous Wounds)</li>
+        <li><strong style="color:#DC2626;">Red bars (positive values)</strong> — this factor <em>increases</em> the risk prediction</li>
+        <li><strong style="color:#16A34A;">Green bars (negative values)</strong> — this factor <em>reduces</em> the risk prediction</li>
+        <li>Longer bar = stronger influence on the result</li>
+      </ul>
+      <div class="callout mt-4">
+        <strong>Example:</strong> If a patient had diabetes for 20 years and their blood sugar is
+        300 mg/dL, both bars will be long and red, pushing the risk higher.
+        If they're young and have never had wounds, those bars will be short and green.
+      </div>
+      <p class="mt-4 text-sm">
+        Note: If you did not fill in any clinical fields, SHAP values are estimated from typical
+        clinical ranges. For accurate SHAP values, fill in the patient's actual data.
+      </p>
+    </div>
+
+    <!-- Text explanation -->
+    <div class="card">
+      <h3>Card 4: 💬 Clinical Textual Justification</h3>
+      <p>
+        A plain-English paragraph that summarises the AI's reasoning. It is tailored to the
+        risk level and explains:
+      </p>
+      <ul class="mt-4">
+        <li>What the AI observed in the image (tissue patterns, boundaries, discolouration)</li>
+        <li>What the findings suggest clinically</li>
+        <li>What the recommended next step is</li>
+      </ul>
+      <p class="mt-4">
+        If you filled in clinical parameters, a grid of those values also appears in this card
+        for reference, showing exactly what data was used.
+      </p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+
+  <!-- ══════════════════════════════════════════════════
+       7. CLINICAL PARAMETERS
+  ══════════════════════════════════════════════════ -->
+  <div id="clinical-fields" class="section-wrap">
+    <p class="section-label">Section 7</p>
+    <h2 class="section-title">The Clinical Parameters</h2>
+    <p class="section-intro">Why each optional field matters and what values to enter.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Field</th>
+          <th>Unit</th>
+          <th>Example</th>
+          <th>Why it matters</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Age</strong></td>
+          <td>Years</td>
+          <td>62</td>
+          <td>Older patients have higher cumulative DFU risk due to reduced circulation and nerve sensitivity.</td>
+        </tr>
+        <tr>
+          <td><strong>BMI</strong></td>
+          <td>kg/m²</td>
+          <td>31.2</td>
+          <td>Higher BMI increases pressure on the foot and slows healing. BMI over 30 is a risk factor.</td>
+        </tr>
+        <tr>
+          <td><strong>Diabetes Duration</strong></td>
+          <td>Years</td>
+          <td>15</td>
+          <td>Longer duration = more cumulative nerve damage (neuropathy) and vascular damage = higher DFU risk.</td>
+        </tr>
+        <tr>
+          <td><strong>Fasting Blood Sugar</strong></td>
+          <td>mg/dL</td>
+          <td>180</td>
+          <td>Chronic high blood sugar slows wound healing and promotes infection. Normal fasting level is 70–100 mg/dL.</td>
+        </tr>
+        <tr>
+          <td><strong>Previous Ulcers / Wounds</strong></td>
+          <td>Dropdown</td>
+          <td>Yes – healed</td>
+          <td>History of previous ulcers is the <strong>single strongest predictor</strong> of future DFU recurrence.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout mt-4">
+      <strong>All fields are optional.</strong> Leaving them blank will not prevent the AI from
+      running — the image analysis still works. However, filling in accurate values gives you a
+      more meaningful SHAP feature importance chart.
+    </div>
+  </div>
+
+  <hr class="divider">
+
+
+  <!-- ══════════════════════════════════════════════════
+       8. HOW THE AI WORKS
+  ══════════════════════════════════════════════════ -->
+  <div id="how-ai-works" class="section-wrap">
+    <p class="section-label">Section 8</p>
+    <h2 class="section-title">How the AI Works</h2>
+    <p class="section-intro">A plain-English explanation of the technology — no jargon required.</p>
+
+    <div class="callout mb-4">
+      <strong>Summary in one sentence:</strong> TBS sends your foot photo to a trained
+      neural network (a type of AI that has "learned" what DFUs look like from thousands of
+      images), which classifies the image and sends back a risk score and heatmap.
+    </div>
+
+    <!-- Flow diagram -->
+    <p class="mb-2" style="font-size:13px; color: var(--slate3); font-weight:600; text-transform:uppercase; letter-spacing:1px;">
+      How information flows through the system:
+    </p>
+    <div class="flow">
+      <div class="flow-box">📷<br>Your Photo</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box">🌐<br>Your Browser</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box">⚙️<br>TBS Server<br><span style="font-size:10px;color:#94A3B8;">(Vercel)</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box">🧠<br>AI Model<br><span style="font-size:10px;color:#94A3B8;">(Colab/GPU)</span></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box">📊<br>Results<br>back to you</div>
+    </div>
+
+    <!-- Architecture layers -->
+    <div class="mt-8">
+      <div class="arch-layer">
+        <div class="arch-icon">🌐</div>
+        <div>
+          <div class="arch-title">Frontend — What you see in the browser</div>
+          <div class="arch-desc">
+            Built with <strong>Next.js + React</strong>. This is the visual interface —
+            the buttons, upload box, result cards, charts. It runs entirely in your browser.
+            Styled with Tailwind CSS for a clean, responsive layout.
+          </div>
+        </div>
+      </div>
+
+      <div class="arch-layer">
+        <div class="arch-icon">🔒</div>
+        <div>
+          <div class="arch-title">Authentication — Google Sign-In (NextAuth.js)</div>
+          <div class="arch-desc">
+            When you sign in, TBS uses <strong>NextAuth.js</strong> to talk to Google's
+            secure login service. Your password never touches TBS's servers — Google
+            handles it entirely and gives TBS a token saying "this person is who they say they are".
+          </div>
+        </div>
+      </div>
+
+      <div class="arch-layer">
+        <div class="arch-icon">⚙️</div>
+        <div>
+          <div class="arch-title">API Layer — The bridge (Next.js API route)</div>
+          <div class="arch-desc">
+            The file <code>/api/predict</code> on the TBS server receives your image,
+            forwards it to the AI backend, and returns the formatted result. If the AI
+            backend is offline, it falls back to the simulation mode automatically.
+          </div>
+        </div>
+      </div>
+
+      <div class="arch-layer">
+        <div class="arch-icon">🧠</div>
+        <div>
+          <div class="arch-title">AI Model — ResNet18 Neural Network</div>
+          <div class="arch-desc">
+            The brain of the system. <strong>ResNet18</strong> is a convolutional neural network
+            (CNN) originally designed for general image recognition and then retrained
+            ("fine-tuned") on a dataset of diabetic foot images labelled as either
+            <em>Abnormal (Ulcer)</em> or <em>Normal (Healthy skin)</em>.
+            It analyses each pixel region and outputs a probability score for each class.
+          </div>
+        </div>
+      </div>
+
+      <div class="arch-layer">
+        <div class="arch-icon">🌡️</div>
+        <div>
+          <div class="arch-title">Grad-CAM — Visual Explanation Engine</div>
+          <div class="arch-desc">
+            After the ResNet18 model makes its prediction, a technique called
+            <strong>Gradient-weighted Class Activation Mapping (Grad-CAM)</strong>
+            traces back through the network to find which image regions were most
+            "activated" (influential) for the decision. Those regions are drawn as
+            a colour overlay on your photo.
+          </div>
+        </div>
+      </div>
+
+      <div class="arch-layer">
+        <div class="arch-icon">🚇</div>
+        <div>
+          <div class="arch-title">ngrok Tunnel — Making the AI reachable from the internet</div>
+          <div class="arch-desc">
+            The AI model runs on a <strong>Google Colab</strong> notebook (a free cloud GPU).
+            Colab computers are not normally reachable from the internet, so a service called
+            <strong>ngrok</strong> creates a secure tunnel with a public URL
+            (<code>unillusive-unreally-sharolyn.ngrok-free.dev</code>).
+            The TBS server is configured with this URL to forward your images to the AI.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout mt-4">
+      <strong>What is "transfer learning"?</strong> Instead of building an AI from scratch
+      (which needs millions of images), the team started with ResNet18 which already
+      "understands" shapes, textures, and edges from training on millions of general photos.
+      Then they retrained its final layers on DFU images. This gives high accuracy
+      even with a small medical dataset — like teaching an experienced radiologist a new
+      speciality instead of teaching a complete beginner everything from zero.
+    </div>
+  </div>
+
+  <hr class="divider">
+
+</div><!-- end .page -->
+
+<div class="page-break"></div>
+
+<div class="page">
+
+  <!-- ══════════════════════════════════════════════════
+       9. FAQ
+  ══════════════════════════════════════════════════ -->
+  <div id="faq" class="section-wrap">
+    <p class="section-label">Section 9</p>
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <p class="section-intro">Answers to the most common questions about Toe Be Sure.</p>
+
+    <div class="faq-item">
+      <div class="faq-q">Q: Do I need to install any app or software?</div>
+      <div class="faq-a">No. TBS runs entirely in your web browser. Just visit <strong>toe-be-sure.vercel.app</strong> on any device — phone, tablet, or computer.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Q: Why do I need to sign in with Google? Can't I use the app anonymously?</div>
+      <div class="faq-a">A Google sign-in is required to prevent misuse and protect the service. TBS only accesses your basic Google profile (name, email, photo) — no other Google data is read or stored.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Q: Are my photos stored permanently on your servers?</div>
+      <div class="faq-a">No. Images are transmitted for analysis only and are not saved to any database. The system processes them in memory and discards them immediately after the result is returned.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Q: The result says "⚡ Simulated" — what does that mean?</div>
+      <div class="faq-a">It means the live AI backend (the Google Colab server) is not currently running. TBS automatically falls back to a demonstration mode that generates a plausible-looking result. <strong>These simulated results are NOT based on your actual image and must not be used for any medical decisions.</strong></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Q: How accurate is the AI?</div>
+      <div class="faq-a">The underlying ResNet18 model was trained and validated on a curated DFU dataset. However, accuracy depends heavily on image quality, lighting, and angle. Real-world clinical accuracy has not been independently validated. Always treat the result as a screening tool, not a diagnosis.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Q: Can I use this on mobile (phone / tablet)?</div>
+      <div class="faq-a">Yes. The website is fully responsive and works on mobile browsers. You can take a photo directly on your phone and upload it from the camera roll. On mobile, navigation links are inside the ☰ hamburger menu.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Q: What if the analysis is taking too long or produces an error?</div>
+      <div class="faq-a">Wait a few seconds and try again. If the Colab backend has gone to sleep (it times out after inactivity), the system will fall back to simulation mode. A red warning box will appear if there is an unexpected error.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Q: What file formats are supported for the foot image?</div>
+      <div class="faq-a">JPG (JPEG), PNG, and WEBP are supported. Most phone camera photos are automatically in JPG or HEIC format — if your phone saves HEIC, convert it to JPG first, or use iOS's "Compatibility" camera mode.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Q: What does the confidence percentage mean?</div>
+      <div class="faq-a">It represents how certain the neural network is about its decision. A confidence of 91% means the AI's highest class probability was 91% — i.e., it is 91% confident the foot belongs to the predicted category. Scores above 80% are generally considered high-confidence.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Q: Can I switch between dark mode and light mode?</div>
+      <div class="faq-a">Yes — click the 🌙 (moon) icon in the top-right of the navigation bar to switch to dark mode. Click ☀️ (sun) to switch back to light mode. The setting lasts for your current session.</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+
+  <!-- ══════════════════════════════════════════════════
+       10. MEDICAL DISCLAIMER
+  ══════════════════════════════════════════════════ -->
+  <div id="important-notes" class="section-wrap">
+    <p class="section-label">Section 10</p>
+    <h2 class="section-title">Important Medical Disclaimer</h2>
+    <p class="section-intro">Please read this section carefully before using Toe Be Sure for any health-related decision.</p>
+
+    <div class="card card-red">
+      <h3 style="color:#7F1D1D;">⚠️ This is NOT a medical device</h3>
+      <p style="color:#7F1D1D;">
+        Toe Be Sure is a <strong>clinical decision support prototype</strong> built for
+        educational and research purposes. It has <strong>not been approved</strong> by any
+        medical regulatory authority (such as the FDA, CE, or CDSCO) as a medical device.
+        The results it produces must <strong>never replace</strong> the advice, diagnosis,
+        or treatment recommendations of a qualified healthcare professional.
+      </p>
+    </div>
+
+    <div class="callout-warn callout mt-4">
+      <strong>Always consult a doctor.</strong> If you or a patient has any foot wounds,
+      discolouration, swelling, or pain, please seek medical attention regardless of the
+      result shown by TBS. A Low-Risk result does <em>not</em> guarantee the absence of disease.
+    </div>
+
+    <div class="card mt-4">
+      <h3>What TBS is intended for</h3>
+      <ul>
+        <li>Providing a quick first-pass screening to flag feet that may need further evaluation</li>
+        <li>Demonstrating explainable AI techniques (Grad-CAM, SHAP) in a medical context</li>
+        <li>Educational use by medical students, healthcare trainees, and researchers</li>
+        <li>Hackathon and academic demonstration of multi-modal deep learning</li>
+      </ul>
+    </div>
+
+    <div class="card mt-4">
+      <h3>What TBS must NOT be used for</h3>
+      <ul>
+        <li>Replacing a clinical examination by a qualified doctor or nurse</li>
+        <li>Making any treatment or medication decisions</li>
+        <li>Diagnosing any medical condition or disease</li>
+        <li>Use in emergency or critical care situations</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+
+  <!-- ══════════════════════════════════════════════════
+       11. CONTACT
+  ══════════════════════════════════════════════════ -->
+  <div id="contact" class="section-wrap">
+    <p class="section-label">Section 11</p>
+    <h2 class="section-title">Contact &amp; Support</h2>
+    <p class="section-intro">Get in touch if you have questions, feedback, or technical issues.</p>
+
+    <div class="feat-grid">
+      <div class="card card-teal">
+        <h3>📧 Email</h3>
+        <p><a href="mailto:hakdiyal@gitam.in" style="color: var(--teal2); font-weight:700;">hakdiyal@gitam.in</a></p>
+        <p class="mt-4">Best for: detailed questions, bug reports, or collaboration enquiries. Expect a reply within 1–2 business days.</p>
+      </div>
+      <div class="card card-teal">
+        <h3>📞 Phone</h3>
+        <p style="font-weight:700; font-size:15px;">+91 81253 59415</p>
+        <p class="mt-4">Best for: urgent queries or a quick walkthrough of the system.</p>
+      </div>
+    </div>
+
+    <div class="card mt-4">
+      <h3>🐙 GitHub Repository</h3>
+      <p>The full source code is available at:</p>
+      <p class="mt-4" style="font-family: monospace; background:#E2E8F0; padding: 8px 14px; border-radius:8px; font-size:13px;">
+        https://github.com/Vishnu-1526/Toe-Be-Sure
+      </p>
+      <p class="mt-4">Fork it, raise issues, or contribute improvements via pull requests.</p>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════ -->
+  <div class="footer">
+    <p style="font-size:28px; margin-bottom:10px;">🦶</p>
+    <p><strong>Toe Be Sure</strong> — AI-Powered Diabetic Foot Ulcer Detection</p>
+    <p style="margin-top:6px;">Version 1.0 · 2025–2026 · Built for Kodrxy Hackathon</p>
+    <p style="margin-top:12px;">
+      This document was produced as the official user manual for TBS.<br>
+      For the live app, visit <strong>toe-be-sure.vercel.app</strong>
+    </p>
+  </div>
+
+</div><!-- end .page -->
+
+</body>
+</html>
