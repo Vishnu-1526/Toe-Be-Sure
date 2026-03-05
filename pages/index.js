@@ -100,7 +100,7 @@ export default function Home() {
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
   const [darkMode, setDarkMode] = useState(false);
-  const { data: session } = useSession();
+  const { data: session, status } = useSession({ required: true });
   const canvasRef = useRef(null);
   const fileRef  = useRef(null);
   const toolRef  = useRef(null);
@@ -143,6 +143,21 @@ export default function Home() {
 
   const aboutRef = useRef(null);
   const contactRef = useRef(null);
+
+  // Show loading screen while checking auth
+  if (status === "loading") {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-page" data-theme="light">
+        <div className="flex flex-col items-center gap-4">
+          <div className="relative w-14 h-14 rounded-2xl flex items-center justify-center text-2xl shadow-lg" style={{ background: "#0E5F7E" }}>
+            <span className="opacity-20 text-sm">✦</span>
+            <span className="absolute text-3xl leading-none select-none">🦶</span>
+          </div>
+          <div className="w-6 h-6 border-2 border-teal-500 border-t-transparent rounded-full animate-spin" />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
