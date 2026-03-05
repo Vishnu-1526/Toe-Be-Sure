@@ -28,7 +28,6 @@
 
 **Toe Be Sure (TBS)** is a clinical decision support web app that uses deep learning to detect **Diabetic Foot Ulcers (DFUs)** from foot photographs. Upload an image, get an instant AI-powered risk assessment — complete with visual heatmaps and plain-English explanations.
 
-> ⚠️ TBS is a research/hackathon prototype. It is **not** a certified medical device and must not replace professional clinical diagnosis.
 
 ---
 
@@ -85,7 +84,9 @@ Set `COLAB_URL` in Vercel environment variables to that URL and redeploy.
 
 ## 👥 Team — Kodrxy Hackathon 2025–2026
 
-| Role | |
+| contributors |
 |---|---|
-| Frontend + Integration | [Vishnu-1526](https://github.com/Vishnu-1526) |
-| AI Model + Backend | [kharsha006](https://github.com/kharsha006) |
+|[Vishnu-1526](https://github.com/Vishnu-1526) |
+|[kharsha006](https://github.com/kharsha006) | 
+|[GH2023003041](https://github.com/GH2023003041)|
+|[Nani2054](https://github.com/Nani2054)|
