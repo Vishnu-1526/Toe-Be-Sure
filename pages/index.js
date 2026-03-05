@@ -578,7 +578,7 @@ export default function Home() {
                       <span className="ml-auto text-[10px] bg-teal-900/40 text-teal-400 border border-teal-700/40 px-2 py-0.5 rounded-full">XAI</span>
                     </div>
                     {result.heatmap ? (
-                      <img src={`data:image/jpeg;base64,${result.heatmap}`} alt="Grad-CAM heatmap" className="w-full rounded-xl" />
+                      <img src={`data:image/png;base64,${result.heatmap}`} alt="Grad-CAM heatmap" className="w-full rounded-xl" />
                     ) : (
                       <canvas ref={canvasRef} className="w-full rounded-xl" />
                     )}
