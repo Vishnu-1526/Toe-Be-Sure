@@ -55,25 +55,31 @@ function drawHeatmap(canvas, imgSrc, risk) {
     canvas.width = img.width;
     canvas.height = img.height;
     ctx.drawImage(img, 0, 0);
-    const [r, g, b] = RISK[risk]?.heat ?? [255, 0, 0];
+
     const spots =
       risk === "High"
         ? [
-            { x: 0.44, y: 0.62, radius: 0.26, alpha: 0.58 },
-            { x: 0.57, y: 0.38, radius: 0.16, alpha: 0.42 },
-            { x: 0.33, y: 0.72, radius: 0.12, alpha: 0.30 },
+            { x: 0.44, y: 0.62, radius: 0.28, intensity: 1.0 },
+            { x: 0.57, y: 0.38, radius: 0.18, intensity: 0.75 },
+            { x: 0.33, y: 0.72, radius: 0.13, intensity: 0.55 },
           ]
         : risk === "Medium"
-        ? [{ x: 0.5, y: 0.56, radius: 0.22, alpha: 0.44 }]
-        : [{ x: 0.5, y: 0.5, radius: 0.09, alpha: 0.18 }];
+        ? [
+            { x: 0.5, y: 0.56, radius: 0.22, intensity: 0.75 },
+            { x: 0.62, y: 0.44, radius: 0.12, intensity: 0.45 },
+          ]
+        : [{ x: 0.5, y: 0.5, radius: 0.10, intensity: 0.35 }];
 
-    spots.forEach(({ x, y, radius, alpha }) => {
+    // jet-colormap style: outer=blue → mid=green/yellow → core=red
+    spots.forEach(({ x, y, radius, intensity }) => {
       const cx = img.width * x;
       const cy = img.height * y;
       const rad = Math.min(img.width, img.height) * radius;
       const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, rad);
-      grad.addColorStop(0, `rgba(${r},${g},${b},${alpha})`);
-      grad.addColorStop(1, `rgba(${r},${g},${b},0)`);
+      grad.addColorStop(0,   `rgba(255, 20, 20, ${0.82 * intensity})`);   // red core
+      grad.addColorStop(0.35,`rgba(255,180,  0, ${0.70 * intensity})`);   // yellow
+      grad.addColorStop(0.65,`rgba( 40,220, 60, ${0.50 * intensity})`);   // green
+      grad.addColorStop(1,   `rgba(  0, 80,255, 0)`);                     // transparent blue edge
       ctx.beginPath();
       ctx.arc(cx, cy, rad, 0, Math.PI * 2);
       ctx.fillStyle = grad;
